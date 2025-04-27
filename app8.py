@@ -42,6 +42,8 @@ st.markdown("""
     --card-dark: #1a2639;
     --border-light: rgba(0,0,0,0.05);
     --border-dark: #3e4a61;
+    --greek-light: #333333;
+    --greek-dark: #333333;
 }
 
 * {
@@ -138,6 +140,7 @@ body {
     font-family: 'Roboto Mono', monospace;
     margin-top: 0.5rem;
     letter-spacing: -0.01em;
+    color: var(--greek-light);
 }
 
 .stDataFrame {
@@ -239,6 +242,10 @@ body {
     .stMarkdown, .stDataFrame, .stNumberInput label {
         color: var(--text-dark) !important;
     }
+    
+    .greek-values {
+        color: var(--greek-dark) !important;
+    }
 }
 
 </style>
@@ -296,8 +303,8 @@ def plot_heatmap(bs_model, spot_range, vol_range, strike):
             put_prices[i, j] = bs_temp.put_price
     
     theme = st.get_option("theme.base")
-    cmap = cm.get_cmap('viridis').copy()
-    cmap.set_bad(color='#2d3748' if theme == "dark" else 'white')
+    cmap = cm.get_cmap('plasma').copy()
+    cmap.set_bad(color='white')
     
     fig_call, ax_call = plt.subplots(figsize=(10, 7), dpi=120)
     sns.heatmap(call_prices, 
@@ -310,7 +317,7 @@ def plot_heatmap(bs_model, spot_range, vol_range, strike):
                 cbar_kws={'label': 'Price ($)', 'shrink': 0.75},
                 linewidths=0.5,
                 linecolor='#f0f0f0',
-                annot_kws={'size': 9, 'color': 'white' if theme == "dark" else 'black'})
+                annot_kws={'size': 9, 'color': 'black'})
     
     ax_call.set_title('CALL OPTION PRICE SENSITIVITY', 
                      fontsize=14, fontweight='bold', pad=20)
@@ -329,7 +336,7 @@ def plot_heatmap(bs_model, spot_range, vol_range, strike):
                 cbar_kws={'label': 'Price ($)', 'shrink': 0.75},
                 linewidths=0.5,
                 linecolor='#f0f0f0',
-                annot_kws={'size': 9, 'color': 'white' if theme == "dark" else 'black'})
+                annot_kws={'size': 9, 'color': 'black'})
     
     ax_put.set_title('PUT OPTION PRICE SENSITIVITY', 
                     fontsize=14, fontweight='bold', pad=20)
