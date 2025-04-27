@@ -18,16 +18,13 @@ st.set_page_config(
 
 st.markdown("""
     <p style="font-size: 12px; text-align: center;">
-        Created by: <a href="https://www.linkedin.com/in/luca-girlando-775463302/" target="_blank">Luca Girlando</a><br>
-        <span style="color: red;">Please use the light theme, otherwise with the dark theme some parts might not be displayed correctly</span>
+        Created by: <a href="https://www.linkedin.com/in/luca-girlando-775463302/" target="_blank">Luca Girlando</a>
     </p>
 """, unsafe_allow_html=True)
 
 # Premium scientific CSS
 st.markdown("""
-            
 <style>
-
 :root {
     --primary-dark: #1a2639;
     --primary-medium: #3e4a61;
@@ -37,6 +34,14 @@ st.markdown("""
     --call-green: #2e8b57;
     --put-red: #c04e4e;
     --highlight: #f0f4f8;
+    --text-light: #333333;
+    --text-dark: #f0f2f6;
+    --bg-light: #f8f9fa;
+    --bg-dark: #0e1117;
+    --card-light: white;
+    --card-dark: #1a2639;
+    --border-light: rgba(0,0,0,0.05);
+    --border-dark: #3e4a61;
 }
 
 * {
@@ -50,7 +55,7 @@ h1, h2, h3, h4 {
 }
 
 body {
-    background-color: #f8f9fa;
+    background-color: var(--bg-light);
 }
 
 .stSidebar {
@@ -82,7 +87,6 @@ body {
     margin-bottom: 1.2rem;
 }
 
-/* Premium metric cards */
 .metric-container {
     display: flex;
     flex-direction: column;
@@ -90,12 +94,12 @@ body {
     align-items: center;
     padding: 1.8rem 2rem;
     border-radius: 12px;
-    background: white;
+    background: var(--card-light);
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     margin-bottom: 1.5rem;
     text-align: center;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid var(--border-light);
 }
 
 .metric-container:hover {
@@ -116,7 +120,7 @@ body {
     font-weight: 800;
     font-family: 'Roboto Mono', monospace;
     margin: 0.7rem 0;
-    color: var(--primary-dark);
+    color: var(--text-light);
     letter-spacing: -0.03em;
 }
 
@@ -136,21 +140,18 @@ body {
     letter-spacing: -0.01em;
 }
 
-/* Enhanced tables */
 .stDataFrame {
     border-radius: 10px !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
     border: 1px solid rgba(0,0,0,0.03) !important;
 }
 
-/* Heatmap styling */
 .heatmap-title {
     font-weight: 700 !important;
     font-size: 1.3rem !important;
     margin-bottom: 1rem !important;
 }
 
-/* Footer */
 .footer {
     font-size: 0.78rem;
     text-align: center;
@@ -161,13 +162,11 @@ body {
     letter-spacing: 0.03em;
 }
 
-/* Input labels */
 .st-emotion-cache-1qg05tj {
     font-weight: 500 !important;
     color: var(--primary-medium) !important;
 }
 
-/* Custom divider */
 .section-divider {
     border: 0;
     height: 1px;
@@ -175,23 +174,73 @@ body {
     margin: 2rem 0;
 }
 
-/* Interpretation boxes */
 .interpretation-box {
-    background-color: #f8f9fa;
+    background-color: var(--card-light);
     border-radius: 8px;
     padding: 1.5rem;
     margin: 1.5rem 0;
     border-left: 4px solid var(--accent-teal);
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    color: var(--text-light);
 }
 
 .greek-explanation {
-    background-color: white;
+    background-color: var(--card-light);
     border-radius: 8px;
     padding: 1rem;
     margin: 1rem 0;
     border: 1px solid #e9ecef;
+    color: var(--text-light);
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-dark: #f0f2f6;
+        --primary-medium: #a1a9b8;
+        --highlight: #1a2639;
+    }
+    
+    body {
+        background-color: var(--bg-dark) !important;
+    }
+    
+    h1, h2, h3, h4 {
+        color: var(--text-dark) !important;
+    }
+    
+    .metric-container {
+        background: var(--card-dark) !important;
+        border: 1px solid var(--border-dark) !important;
+    }
+    
+    .metric-value {
+        color: var(--text-dark) !important;
+    }
+    
+    .stDataFrame {
+        background-color: var(--card-dark) !important;
+    }
+    
+    .interpretation-box, .greek-explanation {
+        background-color: var(--card-dark) !important;
+        border-color: var(--border-dark) !important;
+        color: var(--text-dark) !important;
+    }
+    
+    .footer {
+        color: var(--primary-medium) !important;
+        border-top: 1px solid var(--border-dark) !important;
+    }
+    
+    .metric-label {
+        color: var(--primary-medium) !important;
+    }
+    
+    .stMarkdown, .stDataFrame, .stNumberInput label {
+        color: var(--text-dark) !important;
+    }
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -219,7 +268,6 @@ class BlackScholes:
         self.call_price = call_price
         self.put_price = put_price
 
-        # Greeks calculation
         self.call_delta = norm.cdf(d1)
         self.put_delta = -norm.cdf(-d1)
         self.gamma = norm.pdf(d1)/(S*sigma*sqrt(T))
@@ -247,11 +295,10 @@ def plot_heatmap(bs_model, spot_range, vol_range, strike):
             call_prices[i, j] = bs_temp.call_price
             put_prices[i, j] = bs_temp.put_price
     
-    # Premium colormap
-    cmap = cm.get_cmap('plasma').copy()
-    cmap.set_bad(color='white')
+    theme = st.get_option("theme.base")
+    cmap = cm.get_cmap('viridis').copy()
+    cmap.set_bad(color='#2d3748' if theme == "dark" else 'white')
     
-    # Create figure with constrained layout
     fig_call, ax_call = plt.subplots(figsize=(10, 7), dpi=120)
     sns.heatmap(call_prices, 
                 xticklabels=np.round(spot_range, 1), 
@@ -263,7 +310,7 @@ def plot_heatmap(bs_model, spot_range, vol_range, strike):
                 cbar_kws={'label': 'Price ($)', 'shrink': 0.75},
                 linewidths=0.5,
                 linecolor='#f0f0f0',
-                annot_kws={'size': 9})
+                annot_kws={'size': 9, 'color': 'white' if theme == "dark" else 'black'})
     
     ax_call.set_title('CALL OPTION PRICE SENSITIVITY', 
                      fontsize=14, fontweight='bold', pad=20)
@@ -271,7 +318,6 @@ def plot_heatmap(bs_model, spot_range, vol_range, strike):
     ax_call.set_ylabel('Volatility (σ)', fontsize=11, labelpad=10)
     ax_call.tick_params(axis='both', which='major', labelsize=9)
     
-    # Put option heatmap
     fig_put, ax_put = plt.subplots(figsize=(10, 7), dpi=120)
     sns.heatmap(put_prices, 
                 xticklabels=np.round(spot_range, 1), 
@@ -283,7 +329,7 @@ def plot_heatmap(bs_model, spot_range, vol_range, strike):
                 cbar_kws={'label': 'Price ($)', 'shrink': 0.75},
                 linewidths=0.5,
                 linecolor='#f0f0f0',
-                annot_kws={'size': 9})
+                annot_kws={'size': 9, 'color': 'white' if theme == "dark" else 'black'})
     
     ax_put.set_title('PUT OPTION PRICE SENSITIVITY', 
                     fontsize=14, fontweight='bold', pad=20)
@@ -293,7 +339,6 @@ def plot_heatmap(bs_model, spot_range, vol_range, strike):
     
     return fig_call, fig_put
 
-# Sidebar Configuration
 with st.sidebar:
     st.markdown("""
     <div style="text-align: center; margin-bottom: 30px;">
@@ -323,7 +368,6 @@ with st.sidebar:
     spot_range = np.linspace(spot_min, spot_max, 10)
     vol_range = np.linspace(vol_min, vol_max, 10)
 
-# Main Content
 st.markdown("""
 <div style="text-align: center; margin-bottom: 40px;">
     <h1 style="font-size: 2.3rem; margin-bottom: 10px;">Options Pricing Analytics</h1>
@@ -334,7 +378,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Model Parameters Display
 st.markdown("### Model Configuration")
 param_data = {
     "Parameter": ["Underlying Price (S)", "Strike Price (K)", "Time to Maturity (T)", 
@@ -346,11 +389,9 @@ param_data = {
 param_df = pd.DataFrame(param_data)
 st.dataframe(param_df, use_container_width=True, hide_index=True)
 
-# Calculate prices
 bs = BlackScholes(time_to_maturity, strike, current_price, volatility, interest_rate)
 call_price, put_price = bs.calculate_prices()
 
-# Option Prices Display
 st.markdown("### Option Premiums")
 col1, col2 = st.columns(2)
 
@@ -366,7 +407,6 @@ with col1:
     </div>
     """, unsafe_allow_html=True)
     
-    # Greek explanations for Call
     st.markdown("""
     <div class="greek-explanation">
         <h4>Call Option Greeks:</h4>
@@ -389,7 +429,6 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
     
-    # Greek explanations for Put
     st.markdown("""
     <div class="greek-explanation">
         <h4>Put Option Greeks:</h4>
@@ -400,7 +439,6 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
 
-# Sensitivity Analysis
 st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
 st.markdown("""
 <div style="margin-bottom: 30px;">
@@ -420,7 +458,6 @@ with tab1:
 with tab2:
     st.pyplot(fig_put)
 
-# Heatmap Interpretation
 st.markdown("""
 <div class="interpretation-box">
     <h4>How to Interpret the Heatmaps:</h4>
@@ -438,7 +475,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Footer
 st.markdown("""
 <div class="footer">
     <p>BLACK-SCHOLES OPTION PRICING MODEL | Created by <a href="https://www.linkedin.com/in/luca-girlando-775463302/" target="_blank" style="color: var(--accent-teal); text-decoration: none;">Luca Girlando</a></p>
