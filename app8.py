@@ -24,9 +24,9 @@ st.markdown("""
 
 # Premium scientific CSS
 st.markdown("""
-            
 <style>
 
+/* LIGHT THEME (DEFAULT) */
 :root {
     --primary-dark: #1a2639;
     --primary-medium: #3e4a61;
@@ -38,6 +38,7 @@ st.markdown("""
     --highlight: #f0f4f8;
 }
 
+/* Universal font */
 * {
     font-family: 'Lato', 'Segoe UI', Roboto, sans-serif;
 }
@@ -60,28 +61,15 @@ body {
     color: white !important;
 }
 
-.stSidebar label {
+.stSidebar label,
+.stSidebar .stSlider label,
+.stSidebar .stNumberInput label,
+.stSidebar .stMarkdown h3 {
     color: white !important;
     font-weight: 500 !important;
 }
 
-.stSidebar .stSlider label {
-    color: white !important;
-}
-
-.stSidebar .stNumberInput label {
-    color: white !important;
-}
-
-.stSidebar .stMarkdown h3 {
-    color: white !important;
-}
-
-.stNumberInput, .stSlider {
-    margin-bottom: 1.2rem;
-}
-
-/* Premium metric cards */
+/* Cards */
 .metric-container {
     display: flex;
     flex-direction: column;
@@ -93,7 +81,6 @@ body {
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     margin-bottom: 1.5rem;
     text-align: center;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     border: 1px solid rgba(0,0,0,0.05);
 }
 
@@ -135,14 +122,14 @@ body {
     letter-spacing: -0.01em;
 }
 
-/* Enhanced tables */
+/* Table */
 .stDataFrame {
     border-radius: 10px !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
     border: 1px solid rgba(0,0,0,0.03) !important;
 }
 
-/* Heatmap styling */
+/* Section titles */
 .heatmap-title {
     font-weight: 700 !important;
     font-size: 1.3rem !important;
@@ -166,7 +153,7 @@ body {
     color: var(--primary-medium) !important;
 }
 
-/* Custom divider */
+/* Divider */
 .section-divider {
     border: 0;
     height: 1px;
@@ -174,7 +161,7 @@ body {
     margin: 2rem 0;
 }
 
-/* Interpretation boxes */
+/* Interpretation Boxes */
 .interpretation-box {
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -191,8 +178,77 @@ body {
     margin: 1rem 0;
     border: 1px solid #e9ecef;
 }
+
+/* DARK THEME OVERRIDES */
+@media (prefers-color-scheme: dark) {
+
+    body {
+        background-color: #0e1117;
+        color: #e6e6e6;
+    }
+
+    .metric-container {
+        background: #1c1e24;
+        border: 1px solid #2c2f36;
+        box-shadow: none;
+    }
+
+    .metric-value {
+        color: #f5f5f5;
+    }
+
+    .metric-label {
+        color: #9ca3af;
+    }
+
+    .greek-values {
+        color: #d1d5db;
+    }
+
+    .stDataFrame {
+        background-color: #1e1e1e !important;
+        color: #ffffff !important;
+        border: 1px solid #444 !important;
+    }
+
+    .stSidebar {
+        background: linear-gradient(135deg, #111827, #1f2937) !important;
+    }
+
+    .stSidebar .sidebar-content,
+    .stSidebar label,
+    .stSidebar .stMarkdown h3 {
+        color: white !important;
+    }
+
+    .interpretation-box {
+        background-color: #1f2937;
+        color: #e5e7eb;
+        border-left-color: var(--accent-teal);
+    }
+
+    .greek-explanation {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        color: #f3f4f6;
+    }
+
+    h1, h2, h3, h4 {
+        color: #f9fafb;
+    }
+
+    .heatmap-title {
+        color: #f9fafb !important;
+    }
+
+    .footer {
+        color: #9ca3af;
+        border-top: 1px solid #374151;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
+
 
 class BlackScholes:
     def __init__(self, time_to_maturity, strike, current_price, volatility, interest_rate):
