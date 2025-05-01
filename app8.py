@@ -398,6 +398,59 @@ body {
 .stMarkdown p, .stMarkdown div, .stMarkdown span {
     color: black !important;
 }
+<style>
+/* DARK THEME OVERRIDE FOR MAIN CONTENT */
+@media (prefers-color-scheme: dark) {
+    html, body, .block-container {
+        background-color: var(--primary-dark) !important;
+        color: white !important;
+    }
+
+    .metric-container,
+    .greek-explanation,
+    .interpretation-box {
+        background-color: #111927 !important;
+        color: white !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .metric-value,
+    .metric-label,
+    .greek-values,
+    .heatmap-title,
+    .stMarkdown,
+    .stText,
+    .stTitle,
+    .stHeader,
+    .stSubheader {
+        color: white !important;
+    }
+
+    .footer {
+        color: rgba(255, 255, 255, 0.5) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .stDataFrame {
+        background-color: #1e293b !important;
+        color: white !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Fix inputs background for dark mode */
+    .stTextInput input,
+    .stNumberInput input,
+    .stSelectbox,
+    .stSlider {
+        background-color: #1e293b !important;
+        color: white !important;
+    }
+
+    /* Optional: Remove default Streamlit light background layer */
+    .stApp {
+        background-color: var(--primary-dark) !important;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
