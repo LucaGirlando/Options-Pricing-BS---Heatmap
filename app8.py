@@ -39,6 +39,9 @@ st.markdown("""
         /* Sidebar Title - Black-Scholes */
         .css-1d391kg h1 {
             color: var(--sidebar-title-color);
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         /* Headers */
@@ -67,7 +70,7 @@ st.markdown("""
         }
 
         .greek-values {
-            font-size: 12px;
+            font-size: 14px;
             color: var(--secondary-color);
         }
 
@@ -128,32 +131,39 @@ st.markdown("""
         }
 
         .option-title {
-            font-size: 28px;
+            font-size: 32px;
             color: var(--primary-color);
         }
 
         .option-values {
-            font-size: 18px;
+            font-size: 20px;
             color: var(--secondary-color);
         }
 
         /* Call and Put Option Styling */
         .call-option, .put-option {
-            padding: 10px;
-            margin: 10px 0;
+            padding: 15px;
+            margin: 15px 0;
             border: 1px solid var(--divider-color);
             border-radius: 8px;
+            text-align: center;
         }
 
         .call-option {
             background-color: #e0f7fa;
+            font-size: 24px;
+            color: #00796b;
         }
 
         .put-option {
             background-color: #fbe9e7;
+            font-size: 24px;
+            color: #d32f2f;
         }
+
     </style>
 """, unsafe_allow_html=True)
+
 
 
 class BlackScholes:
