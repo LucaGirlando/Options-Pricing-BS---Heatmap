@@ -22,7 +22,93 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Premium scientific CSS
+st.markdown("""
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
 
+        /* Sidebar */
+        .css-1d391kg {
+            background-color: var(--sidebar-background-color);
+        }
+
+        /* Headers */
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+        }
+
+        /* Metric Boxes */
+        .metric-container {
+            border-radius: 8px;
+            padding: 10px;
+            background-color: var(--card-background);
+            margin: 10px;
+            text-align: center;
+        }
+
+        .metric-container .metric-label {
+            font-size: 16px;
+            color: var(--text-color-light);
+        }
+
+        .metric-container .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .greek-values {
+            font-size: 12px;
+            color: var(--secondary-color);
+        }
+
+        .section-divider {
+            border: 1px solid var(--divider-color);
+            margin: 20px 0;
+        }
+
+        /* Heatmap */
+        .stMarkdown {
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: var(--footer-color);
+        }
+
+        /* Dark Theme */
+        :root {
+            --background-color: #ffffff;
+            --text-color: #000000;
+            --text-color-light: #777777;
+            --primary-color: #2f87c0;
+            --secondary-color: #555555;
+            --card-background: #f7f7f7;
+            --sidebar-background-color: #f7f7f7;
+            --divider-color: #e0e0e0;
+            --footer-color: #777777;
+        }
+
+        /* Light Theme */
+        [data-theme="dark"] {
+            --background-color: #121212;
+            --text-color: #ffffff;
+            --text-color-light: #bbbbbb;
+            --primary-color: #2f87c0;
+            --secondary-color: #999999;
+            --card-background: #2a2a2a;
+            --sidebar-background-color: #2a2a2a;
+            --divider-color: #444444;
+            --footer-color: #bbbbbb;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 class BlackScholes:
     def __init__(self, time_to_maturity, strike, current_price, volatility, interest_rate):
