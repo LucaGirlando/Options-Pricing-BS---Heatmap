@@ -22,11 +22,10 @@ st.markdown("""
     </p>
 """, unsafe_allow_html=True)
 
-# Premium scientific CSS
+# Inject custom CSS for both light and dark mode
 st.markdown("""
 <style>
 
-/* LIGHT THEME (DEFAULT) */
 :root {
     --primary-dark: #1a2639;
     --primary-medium: #3e4a61;
@@ -38,9 +37,14 @@ st.markdown("""
     --highlight: #f0f4f8;
 }
 
-/* Universal font */
 * {
     font-family: 'Lato', 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Light theme defaults */
+body, .stApp {
+    background-color: #f8f9fa;
+    color: #1a2639;
 }
 
 h1, h2, h3, h4 {
@@ -49,27 +53,64 @@ h1, h2, h3, h4 {
     letter-spacing: -0.015em;
 }
 
-body {
-    background-color: #f8f9fa;
+/* Dark theme overrides */
+@media (prefers-color-scheme: dark) {
+    body, .stApp {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+    }
+
+    .metric-container {
+        background: #111111 !important;
+        border: 1px solid #333333 !important;
+        color: #ffffff !important;
+    }
+
+    .metric-value {
+        color: #ffffff !important;
+    }
+
+    .metric-label {
+        color: #bbbbbb !important;
+    }
+
+    .greek-values {
+        color: #dddddd !important;
+    }
+
+    .interpretation-box,
+    .greek-explanation {
+        background-color: #1a1a1a !important;
+        color: #ffffff !important;
+        border: 1px solid #333333 !important;
+    }
+
+    .footer {
+        color: #888888 !important;
+        border-top: 1px solid #444444 !important;
+    }
+
+    .stDataFrame {
+        background: #111111 !important;
+        color: white !important;
+        border: 1px solid #333333 !important;
+    }
+
+    .stSidebar {
+        background: #111111 !important;
+    }
+
+    .stSidebar .sidebar-content,
+    .stSidebar label,
+    .stSidebar .stMarkdown h3 {
+        color: white !important;
+    }
+
+    .st-emotion-cache-1qg05tj {
+        color: #cccccc !important;
+    }
 }
 
-.stSidebar {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium)) !important;
-}
-
-.stSidebar .sidebar-content {
-    color: white !important;
-}
-
-.stSidebar label,
-.stSidebar .stSlider label,
-.stSidebar .stNumberInput label,
-.stSidebar .stMarkdown h3 {
-    color: white !important;
-    font-weight: 500 !important;
-}
-
-/* Cards */
 .metric-container {
     display: flex;
     flex-direction: column;
@@ -81,6 +122,7 @@ body {
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     margin-bottom: 1.5rem;
     text-align: center;
+    transition: all 0.3s ease;
     border: 1px solid rgba(0,0,0,0.05);
 }
 
@@ -102,7 +144,6 @@ body {
     font-weight: 800;
     font-family: 'Roboto Mono', monospace;
     margin: 0.7rem 0;
-    color: var(--primary-dark);
     letter-spacing: -0.03em;
 }
 
@@ -111,7 +152,6 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--primary-medium);
     margin-bottom: 0.5rem;
 }
 
@@ -122,14 +162,14 @@ body {
     letter-spacing: -0.01em;
 }
 
-/* Table */
+/* Enhanced tables */
 .stDataFrame {
     border-radius: 10px !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
     border: 1px solid rgba(0,0,0,0.03) !important;
 }
 
-/* Section titles */
+/* Heatmap title */
 .heatmap-title {
     font-weight: 700 !important;
     font-size: 1.3rem !important;
@@ -141,19 +181,11 @@ body {
     font-size: 0.78rem;
     text-align: center;
     margin-top: 3rem;
-    color: #6c757d;
     padding: 1.2rem;
-    border-top: 1px solid #e9ecef;
     letter-spacing: 0.03em;
 }
 
-/* Input labels */
-.st-emotion-cache-1qg05tj {
-    font-weight: 500 !important;
-    color: var(--primary-medium) !important;
-}
-
-/* Divider */
+/* Custom divider */
 .section-divider {
     border: 0;
     height: 1px;
@@ -161,7 +193,7 @@ body {
     margin: 2rem 0;
 }
 
-/* Interpretation Boxes */
+/* Explanation boxes */
 .interpretation-box {
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -177,279 +209,6 @@ body {
     padding: 1rem;
     margin: 1rem 0;
     border: 1px solid #e9ecef;
-}
-
-/* DARK THEME OVERRIDES */
-@media (prefers-color-scheme: dark) {
-
-    body {
-        background-color: #0e1117;
-        color: #e6e6e6;
-    }
-
-    .metric-container {
-        background: #1c1e24;
-        border: 1px solid #2c2f36;
-        box-shadow: none;
-    }
-
-    .metric-value {
-        color: #f5f5f5;
-    }
-
-    .metric-label {
-        color: #9ca3af;
-    }
-
-    .greek-values {
-        color: #d1d5db;
-    }
-
-    .stDataFrame {
-        background-color: #1e1e1e !important;
-        color: #ffffff !important;
-        border: 1px solid #444 !important;
-    }
-
-    .stSidebar {
-        background: linear-gradient(135deg, #111827, #1f2937) !important;
-    }
-
-    .stSidebar .sidebar-content,
-    .stSidebar label,
-    .stSidebar .stMarkdown h3 {
-        color: white !important;
-    }
-
-    .interpretation-box {
-        background-color: #1f2937;
-        color: #e5e7eb;
-        border-left-color: var(--accent-teal);
-    }
-
-    .greek-explanation {
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        color: #f3f4f6;
-    }
-
-    h1, h2, h3, h4 {
-        color: #f9fafb;
-    }
-
-    .heatmap-title {
-        color: #f9fafb !important;
-    }
-
-    .footer {
-        color: #9ca3af;
-        border-top: 1px solid #374151;
-    }
-}
-<style>
-
-:root {
-    --primary-dark: #1a2639;
-    --primary-medium: #3e4a61;
-    --primary-light: #d9dad7;
-    --accent-blue: #4a6fa5;
-    --accent-teal: #166088;
-    --call-green: #2e8b57;
-    --put-red: #c04e4e;
-    --highlight: #f0f4f8;
-}
-
-/* Global font */
-* {
-    font-family: 'Lato', 'Segoe UI', Roboto, sans-serif;
-}
-
-h1, h2, h3, h4 {
-    color: var(--primary-dark);
-    font-weight: 700;
-    letter-spacing: -0.015em;
-}
-
-body {
-    background-color: #f8f9fa;
-}
-
-/* Sidebar styles */
-.stSidebar {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium)) !important;
-}
-.stSidebar .sidebar-content,
-.stSidebar label,
-.stSidebar .stSlider label,
-.stSidebar .stNumberInput label,
-.stSidebar .stMarkdown h3 {
-    color: white !important;
-}
-
-/* Metric cards */
-.metric-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1.8rem 2rem;
-    border-radius: 12px;
-    background: white;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    margin-bottom: 1.5rem;
-    text-align: center;
-    border: 1px solid rgba(0,0,0,0.05);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
-.metric-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-}
-.metric-call { border-top: 4px solid var(--call-green); }
-.metric-put { border-top: 4px solid var(--put-red); }
-
-.metric-value {
-    font-size: 2.1rem;
-    font-weight: 800;
-    font-family: 'Roboto Mono', monospace;
-    margin: 0.7rem 0;
-    color: var(--primary-dark);
-    letter-spacing: -0.03em;
-}
-
-.metric-label {
-    font-size: 1.05rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--primary-medium);
-    margin-bottom: 0.5rem;
-}
-
-.greek-values {
-    font-size: 0.85rem;
-    font-family: 'Roboto Mono', monospace;
-    margin-top: 0.5rem;
-    letter-spacing: -0.01em;
-    color: black !important;
-}
-
-/* DataFrame styling */
-.stDataFrame {
-    border-radius: 10px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
-    border: 1px solid rgba(0,0,0,0.03) !important;
-}
-
-/* Heatmap titles */
-.heatmap-title {
-    font-weight: 700 !important;
-    font-size: 1.3rem !important;
-    margin-bottom: 1rem !important;
-    color: black !important;
-}
-
-/* Footer */
-.footer {
-    font-size: 0.78rem;
-    text-align: center;
-    margin-top: 3rem;
-    color: #6c757d;
-    padding: 1.2rem;
-    border-top: 1px solid #e9ecef;
-    letter-spacing: 0.03em;
-}
-
-/* Input label override */
-.st-emotion-cache-1qg05tj {
-    font-weight: 500 !important;
-    color: var(--primary-medium) !important;
-}
-
-/* Divider */
-.section-divider {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
-    margin: 2rem 0;
-}
-
-/* Boxes for explanations */
-.interpretation-box {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--accent-teal);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    color: black !important;
-}
-
-.greek-explanation {
-    background-color: white;
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
-    border: 1px solid #e9ecef;
-    color: black !important;
-}
-
-/* Force black text inside Streamlit Markdown for key explanations */
-.stMarkdown p, .stMarkdown div, .stMarkdown span {
-    color: black !important;
-}
-<style>
-/* DARK THEME OVERRIDE FOR MAIN CONTENT */
-@media (prefers-color-scheme: dark) {
-    html, body, .block-container {
-        background-color: var(--primary-dark) !important;
-        color: white !important;
-    }
-
-    .metric-container,
-    .greek-explanation,
-    .interpretation-box {
-        background-color: #111927 !important;
-        color: white !important;
-        border-color: rgba(255, 255, 255, 0.1) !important;
-    }
-
-    .metric-value,
-    .metric-label,
-    .greek-values,
-    .heatmap-title,
-    .stMarkdown,
-    .stText,
-    .stTitle,
-    .stHeader,
-    .stSubheader {
-        color: white !important;
-    }
-
-    .footer {
-        color: rgba(255, 255, 255, 0.5) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-    }
-
-    .stDataFrame {
-        background-color: #1e293b !important;
-        color: white !important;
-        border-color: rgba(255, 255, 255, 0.1) !important;
-    }
-
-    /* Fix inputs background for dark mode */
-    .stTextInput input,
-    .stNumberInput input,
-    .stSelectbox,
-    .stSlider {
-        background-color: #1e293b !important;
-        color: white !important;
-    }
-
-    /* Optional: Remove default Streamlit light background layer */
-    .stApp {
-        background-color: var(--primary-dark) !important;
-    }
 }
 </style>
 """, unsafe_allow_html=True)
