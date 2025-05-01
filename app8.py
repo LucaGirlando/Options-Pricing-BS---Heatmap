@@ -24,92 +24,146 @@ st.markdown("""
 # Premium scientific CSS
 st.markdown("""
     <style>
-        /* Global Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-        }
+    /* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #333;
+}
 
-        /* Sidebar */
-        .css-1d391kg {
-            background-color: var(--sidebar-background-color);
-        }
+/* Light Theme */
+.light-theme {
+  background-color: #f8f9fa;
+  color: #333;
+}
 
-        /* Headers */
-        h1, h2, h3, h4 {
-            color: var(--primary-color);
-        }
+/* Dark Theme */
+.dark-theme {
+  background-color: #212529;
+  color: #f8f9fa;
+}
 
-        /* Metric Boxes */
-        .metric-container {
-            border-radius: 8px;
-            padding: 10px;
-            background-color: var(--card-background);
-            margin: 10px;
-            text-align: center;
-        }
+/* Sidebar */
+.sidebar {
+  background-color: #343a40;
+  color: #fff;
+  width: 250px;
+  padding: 20px;
+}
 
-        .metric-container .metric-label {
-            font-size: 16px;
-            color: var(--text-color-light);
-        }
+/* Light Theme Sidebar - Text color for "BLACK-SCHOLES Options Pricing Model" */
+.light-theme .sidebar .black-scholes-title {
+  color: black !important;  /* Assicura che il testo sia nero */
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
 
-        .metric-container .metric-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
+/* Common Styles for Option Data (Both Themes) */
+.option-data {
+  font-size: 18px;  /* Aumenta la grandezza del testo */
+  font-weight: bold;  /* Testo in grassetto per maggiore visibilità */
+  line-height: 1.5;  /* Spazio tra le righe per migliorare la leggibilità */
+  color: #333333;  /* Colore testo principale (scuro) */
+  background-color: #f0f0f0;  /* Colore di sfondo per evidenziare i dati */
+  padding: 10px;  /* Distanza dal bordo */
+  border-radius: 8px;  /* Angoli arrotondati */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* Leggero effetto di ombra */
+  margin-bottom: 15px;
+}
 
-        .greek-values {
-            font-size: 12px;
-            color: var(--secondary-color);
-        }
+/* Call Option Specific Styling */
+.call-option {
+  color: #0a74da;  /* Colore blu per il "Call Option" */
+}
 
-        .section-divider {
-            border: 1px solid var(--divider-color);
-            margin: 20px 0;
-        }
+/* Put Option Specific Styling */
+.put-option {
+  color: #e74c3c;  /* Colore rosso per il "Put Option" */
+}
 
-        /* Heatmap */
-        .stMarkdown {
-            margin-bottom: 10px;
-        }
+/* Delta, Gamma, Vega, Theta Specific Styling */
+.option-data span {
+  display: inline-block;
+  margin-right: 10px;
+}
 
-        .footer {
-            text-align: center;
-            font-size: 14px;
-            color: var(--footer-color);
-        }
+.option-data span.label {
+  font-weight: normal;  /* Meno in evidenza per la label */
+  color: #777;  /* Colore più chiaro per le etichette */
+}
 
-        /* Dark Theme */
-        :root {
-            --background-color: #ffffff;
-            --text-color: #000000;
-            --text-color-light: #777777;
-            --primary-color: #2f87c0;
-            --secondary-color: #555555;
-            --card-background: #f7f7f7;
-            --sidebar-background-color: #f7f7f7;
-            --divider-color: #e0e0e0;
-            --footer-color: #777777;
-        }
+.option-data span.value {
+  font-weight: bold;  /* Più visibile per i valori */
+}
 
-        /* Light Theme */
-        [data-theme="dark"] {
-            --background-color: #121212;
-            --text-color: #ffffff;
-            --text-color-light: #bbbbbb;
-            --primary-color: #2f87c0;
-            --secondary-color: #999999;
-            --card-background: #2a2a2a;
-            --sidebar-background-color: #2a2a2a;
-            --divider-color: #444444;
-            --footer-color: #bbbbbb;
-        }
-    </style>
-""", unsafe_allow_html=True)
+/* Light Theme Specifics */
+.light-theme .sidebar {
+  background-color: #ffffff;
+  color: #333333;
+}
 
+.light-theme .sidebar .black-scholes-title {
+  color: black !important;  /* Assicura che il testo sia nero */
+}
+
+/* Dark Theme Specifics */
+.dark-theme .sidebar {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
+
+.dark-theme .sidebar .black-scholes-title {
+  color: #ecf0f1 !important;  /* Assicura che il testo sia bianco nel dark theme */
+}
+
+/* Additional Styles for Layout */
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.content {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+footer {
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Button Styles */
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Link Styles */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+        
 class BlackScholes:
     def __init__(self, time_to_maturity, strike, current_price, volatility, interest_rate):
         self.time_to_maturity = time_to_maturity
