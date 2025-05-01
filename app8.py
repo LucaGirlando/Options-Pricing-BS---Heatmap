@@ -22,80 +22,177 @@ st.markdown("""
     </p>
 """, unsafe_allow_html=True)
 
-# CSS 
+# Premium scientific CSS
 st.markdown("""
+            
 <style>
-/* Reset Streamlit's theme-dependent styles */
-html, body, [data-testid="stAppViewContainer"], .stApp {
-    background-color: #f8f9fa !important;
-    color: #212529 !important;
+
+:root {
+    --primary-dark: #1a2639;
+    --primary-medium: #3e4a61;
+    --primary-light: #d9dad7;
+    --accent-blue: #4a6fa5;
+    --accent-teal: #166088;
+    --call-green: #2e8b57;
+    --put-red: #c04e4e;
+    --highlight: #f0f4f8;
 }
 
-[data-testid="stSidebar"] {
-    background: linear-gradient(135deg, #1a2639, #3e4a61) !important;
+* {
+    font-family: 'Lato', 'Segoe UI', Roboto, sans-serif;
+}
+
+h1, h2, h3, h4 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.stSidebar {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium)) !important;
+}
+
+.stSidebar .sidebar-content {
     color: white !important;
 }
 
-[data-testid="stSidebar"] * {
+.stSidebar label {
+    color: white !important;
+    font-weight: 500 !important;
+}
+
+.stSidebar .stSlider label {
     color: white !important;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, div {
-    color: #1a2639 !important;
+.stSidebar .stNumberInput label {
+    color: white !important;
 }
 
-/* Metric boxes */
+.stSidebar .stMarkdown h3 {
+    color: white !important;
+}
+
+.stNumberInput, .stSlider {
+    margin-bottom: 1.2rem;
+}
+
+/* Premium metric cards */
 .metric-container {
-    background: white !important;
-    color: #1a2639 !important;
-    border: 1px solid rgba(0,0,0,0.05) !important;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.8rem 2rem;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
-/* Tables */
+.metric-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+.metric-call {
+    border-top: 4px solid var(--call-green);
+}
+
+.metric-put {
+    border-top: 4px solid var(--put-red);
+}
+
+.metric-value {
+    font-size: 2.1rem;
+    font-weight: 800;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0.7rem 0;
+    color: var(--primary-dark);
+    letter-spacing: -0.03em;
+}
+
+.metric-label {
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary-medium);
+    margin-bottom: 0.5rem;
+}
+
+.greek-values {
+    font-size: 0.85rem;
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+/* Enhanced tables */
 .stDataFrame {
-    background: white !important;
-    color: #212529 !important;
     border-radius: 10px !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
     border: 1px solid rgba(0,0,0,0.03) !important;
 }
 
-/* Inputs */
-.st-emotion-cache-1qg05tj,
-input, label, textarea {
-    color: #3e4a61 !important;
-}
-
-/* Interpretation box */
-.interpretation-box {
-    background-color: #f8f9fa !important;
-    color: #212529 !important;
-    border-left: 4px solid #166088 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
-}
-
-/* Greek explanation box */
-.greek-explanation {
-    background-color: white !important;
-    border: 1px solid #e9ecef !important;
-    color: #212529 !important;
+/* Heatmap styling */
+.heatmap-title {
+    font-weight: 700 !important;
+    font-size: 1.3rem !important;
+    margin-bottom: 1rem !important;
 }
 
 /* Footer */
 .footer {
-    color: #6c757d !important;
-    border-top: 1px solid #e9ecef !important;
+    font-size: 0.78rem;
+    text-align: center;
+    margin-top: 3rem;
+    color: #6c757d;
+    padding: 1.2rem;
+    border-top: 1px solid #e9ecef;
+    letter-spacing: 0.03em;
 }
 
-/* Remove automatic theme-based filters */
-html {
-    filter: none !important;
+/* Input labels */
+.st-emotion-cache-1qg05tj {
+    font-weight: 500 !important;
+    color: var(--primary-medium) !important;
+}
+
+/* Custom divider */
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+    margin: 2rem 0;
+}
+
+/* Interpretation boxes */
+.interpretation-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--accent-teal);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.greek-explanation {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid #e9ecef;
 }
 </style>
 """, unsafe_allow_html=True)
-
-
 
 class BlackScholes:
     def __init__(self, time_to_maturity, strike, current_price, volatility, interest_rate):
