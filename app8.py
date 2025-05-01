@@ -36,10 +36,10 @@ st.markdown("""
             background-color: var(--sidebar-background-color);
         }
 
-        /* Sidebar Title - Black-Scholes */
+        /* Sidebar Title - BLACK-SCHOLES */
         .css-1d391kg h1 {
             color: var(--sidebar-title-color);
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -70,18 +70,14 @@ st.markdown("""
         }
 
         .greek-values {
-            font-size: 14px;
-            color: var(--secondary-color);
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--greek-values-color);
         }
 
         .section-divider {
             border: 1px solid var(--divider-color);
             margin: 20px 0;
-        }
-
-        /* Heatmap */
-        .stMarkdown {
-            margin-bottom: 10px;
         }
 
         .footer {
@@ -102,6 +98,7 @@ st.markdown("""
             --divider-color: #e0e0e0;
             --footer-color: #777777;
             --sidebar-title-color: #000000;
+            --greek-values-color: #444444;
         }
 
         /* Light Theme */
@@ -116,6 +113,7 @@ st.markdown("""
             --divider-color: #444444;
             --footer-color: #bbbbbb;
             --sidebar-title-color: #ffffff;
+            --greek-values-color: #bbbbbb;
         }
 
         /* Custom styles for options (Call & Put) */
@@ -135,36 +133,42 @@ st.markdown("""
             color: var(--primary-color);
         }
 
-        .option-values {
-            font-size: 20px;
-            color: var(--secondary-color);
-        }
-
-        /* Call and Put Option Styling */
-        .call-option, .put-option {
-            padding: 15px;
-            margin: 15px 0;
-            border: 1px solid var(--divider-color);
-            border-radius: 8px;
-            text-align: center;
-        }
-
+        /* Call Option Styling */
         .call-option {
-            background-color: #e0f7fa;
-            font-size: 24px;
+            background-color: #b2ebf2;
+            font-size: 26px;
             color: #00796b;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 2px solid #00796b;
         }
 
+        /* Put Option Styling */
         .put-option {
-            background-color: #fbe9e7;
-            font-size: 24px;
+            background-color: #f8bbd0;
+            font-size: 26px;
             color: #d32f2f;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 2px solid #d32f2f;
+        }
+
+        .greek-values-call, .greek-values-put {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Greek values for Call and Put */
+        .greek-values-call span, .greek-values-put span {
+            font-weight: normal;
+            color: var(--secondary-color);
         }
 
     </style>
 """, unsafe_allow_html=True)
-
-
 
 class BlackScholes:
     def __init__(self, time_to_maturity, strike, current_price, volatility, interest_rate):
