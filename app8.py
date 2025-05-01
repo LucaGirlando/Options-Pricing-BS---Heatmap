@@ -97,7 +97,7 @@ st.markdown("""
             --sidebar-background-color: #f7f7f7;
             --divider-color: #e0e0e0;
             --footer-color: #777777;
-            --sidebar-title-color: #000000;
+            --sidebar-title-color: #000000;  /* Dark text for sidebar in light theme */
             --greek-values-color: #444444;
         }
 
@@ -112,7 +112,7 @@ st.markdown("""
             --sidebar-background-color: #2a2a2a;
             --divider-color: #444444;
             --footer-color: #bbbbbb;
-            --sidebar-title-color: #ffffff;
+            --sidebar-title-color: #ffffff;  /* White text for sidebar in dark theme */
             --greek-values-color: #bbbbbb;
         }
 
@@ -169,6 +169,7 @@ st.markdown("""
 
     </style>
 """, unsafe_allow_html=True)
+
 
 class BlackScholes:
     def __init__(self, time_to_maturity, strike, current_price, volatility, interest_rate):
