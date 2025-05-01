@@ -36,6 +36,11 @@ st.markdown("""
             background-color: var(--sidebar-background-color);
         }
 
+        /* Sidebar Title - Black-Scholes */
+        .css-1d391kg h1 {
+            color: var(--sidebar-title-color);
+        }
+
         /* Headers */
         h1, h2, h3, h4 {
             color: var(--primary-color);
@@ -93,6 +98,7 @@ st.markdown("""
             --sidebar-background-color: #f7f7f7;
             --divider-color: #e0e0e0;
             --footer-color: #777777;
+            --sidebar-title-color: #000000;
         }
 
         /* Light Theme */
@@ -106,9 +112,49 @@ st.markdown("""
             --sidebar-background-color: #2a2a2a;
             --divider-color: #444444;
             --footer-color: #bbbbbb;
+            --sidebar-title-color: #ffffff;
+        }
+
+        /* Custom styles for options (Call & Put) */
+        .option-container {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: center;
+            padding: 20px;
+            background-color: var(--card-background);
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .option-title {
+            font-size: 28px;
+            color: var(--primary-color);
+        }
+
+        .option-values {
+            font-size: 18px;
+            color: var(--secondary-color);
+        }
+
+        /* Call and Put Option Styling */
+        .call-option, .put-option {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid var(--divider-color);
+            border-radius: 8px;
+        }
+
+        .call-option {
+            background-color: #e0f7fa;
+        }
+
+        .put-option {
+            background-color: #fbe9e7;
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 class BlackScholes:
     def __init__(self, time_to_maturity, strike, current_price, volatility, interest_rate):
