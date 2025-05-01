@@ -23,231 +23,91 @@ st.markdown("""
 
 # Premium scientific CSS
 st.markdown("""
-<style>
-:root {
-    --primary-dark: #1a2639;
-    --primary-medium: #3e4a61;
-    --primary-light: #d9dad7;
-    --accent-blue: #4a6fa5;
-    --accent-teal: #166088;
-    --call-green: #2e8b57;
-    --put-red: #c04e4e;
-    --highlight: #f0f4f8;
-    --text-light: #333333;
-    --text-dark: #f0f2f6;
-    --bg-light: #f8f9fa;
-    --bg-dark: #0e1117;
-    --card-light: white;
-    --card-dark: #1a2639;
-    --border-light: rgba(0,0,0,0.05);
-    --border-dark: #3e4a61;
-    --greek-light: #333333;
-    --greek-dark: #333333;
-}
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
 
-* {
-    font-family: 'Lato', 'Segoe UI', Roboto, sans-serif;
-}
+        /* Sidebar */
+        .css-1d391kg {
+            background-color: var(--sidebar-background-color);
+        }
 
-h1, h2, h3, h4 {
-    color: var(--primary-dark);
-    font-weight: 700;
-    letter-spacing: -0.015em;
-}
+        /* Headers */
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+        }
 
-body {
-    background-color: var(--bg-light);
-}
+        /* Metric Boxes */
+        .metric-container {
+            border-radius: 8px;
+            padding: 10px;
+            background-color: var(--card-background);
+            margin: 10px;
+            text-align: center;
+        }
 
-.stSidebar {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium)) !important;
-}
+        .metric-container .metric-label {
+            font-size: 16px;
+            color: var(--text-color-light);
+        }
 
-.stSidebar .sidebar-content {
-    color: white !important;
-}
+        .metric-container .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
 
-.stSidebar label {
-    color: white !important;
-    font-weight: 500 !important;
-}
+        .greek-values {
+            font-size: 12px;
+            color: var(--secondary-color);
+        }
 
-.stSidebar .stSlider label {
-    color: white !important;
-}
+        .section-divider {
+            border: 1px solid var(--divider-color);
+            margin: 20px 0;
+        }
 
-.stSidebar .stNumberInput label {
-    color: white !important;
-}
+        /* Heatmap */
+        .stMarkdown {
+            margin-bottom: 10px;
+        }
 
-.stSidebar .stMarkdown h3 {
-    color: white !important;
-}
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: var(--footer-color);
+        }
 
-.stNumberInput, .stSlider {
-    margin-bottom: 1.2rem;
-}
+        /* Dark Theme */
+        :root {
+            --background-color: #ffffff;
+            --text-color: #000000;
+            --text-color-light: #777777;
+            --primary-color: #2f87c0;
+            --secondary-color: #555555;
+            --card-background: #f7f7f7;
+            --sidebar-background-color: #f7f7f7;
+            --divider-color: #e0e0e0;
+            --footer-color: #777777;
+        }
 
-.metric-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1.8rem 2rem;
-    border-radius: 12px;
-    background: var(--card-light);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    margin-bottom: 1.5rem;
-    text-align: center;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    border: 1px solid var(--border-light);
-}
-
-.metric-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-}
-
-.metric-call {
-    border-top: 4px solid var(--call-green);
-}
-
-.metric-put {
-    border-top: 4px solid var(--put-red);
-}
-
-.metric-value {
-    font-size: 2.1rem;
-    font-weight: 800;
-    font-family: 'Roboto Mono', monospace;
-    margin: 0.7rem 0;
-    color: var(--text-light);
-    letter-spacing: -0.03em;
-}
-
-.metric-label {
-    font-size: 1.05rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--primary-medium);
-    margin-bottom: 0.5rem;
-}
-
-.greek-values {
-    font-size: 0.85rem;
-    font-family: 'Roboto Mono', monospace;
-    margin-top: 0.5rem;
-    letter-spacing: -0.01em;
-    color: var(--greek-light);
-}
-
-.stDataFrame {
-    border-radius: 10px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
-    border: 1px solid rgba(0,0,0,0.03) !important;
-}
-
-.heatmap-title {
-    font-weight: 700 !important;
-    font-size: 1.3rem !important;
-    margin-bottom: 1rem !important;
-}
-
-.footer {
-    font-size: 0.78rem;
-    text-align: center;
-    margin-top: 3rem;
-    color: #6c757d;
-    padding: 1.2rem;
-    border-top: 1px solid #e9ecef;
-    letter-spacing: 0.03em;
-}
-
-.st-emotion-cache-1qg05tj {
-    font-weight: 500 !important;
-    color: var(--primary-medium) !important;
-}
-
-.section-divider {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
-    margin: 2rem 0;
-}
-
-.interpretation-box {
-    background-color: var(--card-light);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--accent-teal);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    color: var(--text-light);
-}
-
-.greek-explanation {
-    background-color: var(--card-light);
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
-    border: 1px solid #e9ecef;
-    color: var(--text-light);
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary-dark: #f0f2f6;
-        --primary-medium: #a1a9b8;
-        --highlight: #1a2639;
-    }
-    
-    body {
-        background-color: var(--bg-dark) !important;
-    }
-    
-    h1, h2, h3, h4 {
-        color: var(--text-dark) !important;
-    }
-    
-    .metric-container {
-        background: var(--card-dark) !important;
-        border: 1px solid var(--border-dark) !important;
-    }
-    
-    .metric-value {
-        color: var(--text-dark) !important;
-    }
-    
-    .stDataFrame {
-        background-color: var(--card-dark) !important;
-    }
-    
-    .interpretation-box, .greek-explanation {
-        background-color: var(--card-dark) !important;
-        border-color: var(--border-dark) !important;
-        color: var(--text-dark) !important;
-    }
-    
-    .footer {
-        color: var(--primary-medium) !important;
-        border-top: 1px solid var(--border-dark) !important;
-    }
-    
-    .metric-label {
-        color: var(--primary-medium) !important;
-    }
-    
-    .stMarkdown, .stDataFrame, .stNumberInput label {
-        color: var(--text-dark) !important;
-    }
-    
-    .greek-values {
-        color: var(--greek-dark) !important;
-    }
-}
-
-</style>
+        /* Light Theme */
+        [data-theme="dark"] {
+            --background-color: #121212;
+            --text-color: #ffffff;
+            --text-color-light: #bbbbbb;
+            --primary-color: #2f87c0;
+            --secondary-color: #999999;
+            --card-background: #2a2a2a;
+            --sidebar-background-color: #2a2a2a;
+            --divider-color: #444444;
+            --footer-color: #bbbbbb;
+        }
+    </style>
 """, unsafe_allow_html=True)
 
 class BlackScholes:
