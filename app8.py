@@ -246,6 +246,158 @@ body {
         border-top: 1px solid #374151;
     }
 }
+<style>
+
+:root {
+    --primary-dark: #1a2639;
+    --primary-medium: #3e4a61;
+    --primary-light: #d9dad7;
+    --accent-blue: #4a6fa5;
+    --accent-teal: #166088;
+    --call-green: #2e8b57;
+    --put-red: #c04e4e;
+    --highlight: #f0f4f8;
+}
+
+/* Global font */
+* {
+    font-family: 'Lato', 'Segoe UI', Roboto, sans-serif;
+}
+
+h1, h2, h3, h4 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+/* Sidebar styles */
+.stSidebar {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium)) !important;
+}
+.stSidebar .sidebar-content,
+.stSidebar label,
+.stSidebar .stSlider label,
+.stSidebar .stNumberInput label,
+.stSidebar .stMarkdown h3 {
+    color: white !important;
+}
+
+/* Metric cards */
+.metric-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.8rem 2rem;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.metric-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+.metric-call { border-top: 4px solid var(--call-green); }
+.metric-put { border-top: 4px solid var(--put-red); }
+
+.metric-value {
+    font-size: 2.1rem;
+    font-weight: 800;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0.7rem 0;
+    color: var(--primary-dark);
+    letter-spacing: -0.03em;
+}
+
+.metric-label {
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary-medium);
+    margin-bottom: 0.5rem;
+}
+
+.greek-values {
+    font-size: 0.85rem;
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 0.5rem;
+    letter-spacing: -0.01em;
+    color: black !important;
+}
+
+/* DataFrame styling */
+.stDataFrame {
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+    border: 1px solid rgba(0,0,0,0.03) !important;
+}
+
+/* Heatmap titles */
+.heatmap-title {
+    font-weight: 700 !important;
+    font-size: 1.3rem !important;
+    margin-bottom: 1rem !important;
+    color: black !important;
+}
+
+/* Footer */
+.footer {
+    font-size: 0.78rem;
+    text-align: center;
+    margin-top: 3rem;
+    color: #6c757d;
+    padding: 1.2rem;
+    border-top: 1px solid #e9ecef;
+    letter-spacing: 0.03em;
+}
+
+/* Input label override */
+.st-emotion-cache-1qg05tj {
+    font-weight: 500 !important;
+    color: var(--primary-medium) !important;
+}
+
+/* Divider */
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+    margin: 2rem 0;
+}
+
+/* Boxes for explanations */
+.interpretation-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--accent-teal);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    color: black !important;
+}
+
+.greek-explanation {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid #e9ecef;
+    color: black !important;
+}
+
+/* Force black text inside Streamlit Markdown for key explanations */
+.stMarkdown p, .stMarkdown div, .stMarkdown span {
+    color: black !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
