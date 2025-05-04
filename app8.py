@@ -24,18 +24,38 @@ st.markdown("""
 
 # Premium scientific CSS
 st.markdown("""
-            
 <style>
-
 :root {
-    --primary-dark: #1a2639;
-    --primary-medium: #3e4a61;
-    --primary-light: #d9dad7;
-    --accent-blue: #4a6fa5;
-    --accent-teal: #166088;
-    --call-green: #2e8b57;
-    --put-red: #c04e4e;
-    --highlight: #f0f4f8;
+    /* Light Theme */
+    --light-primary: #4BFFFC;
+    --light-background: #FFFFFF;
+    --light-text: #000000;
+    --light-secondary-bg: #9FA1B5;
+    --light-box-bg: #FFFFFF;
+    
+    /* Dark Theme */
+    --dark-primary: #4BFFFC;
+    --dark-background: #000000;
+    --dark-text: #FFFFFF;
+    --dark-secondary-bg: #262730;
+    --dark-box-bg: #1a2639;  /* Colore sidebar (blu navy) */
+    
+    /* Default to light theme */
+    --primary: var(--light-primary);
+    --background: var(--light-background);
+    --text: var(--light-text);
+    --secondary-bg: var(--light-secondary-bg);
+    --box-bg: var(--light-box-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary: var(--dark-primary);
+        --background: var(--dark-background);
+        --text: var(--dark-text);
+        --secondary-bg: var(--dark-secondary-bg);
+        --box-bg: var(--dark-box-bg);
+    }
 }
 
 * {
@@ -43,45 +63,47 @@ st.markdown("""
 }
 
 h1, h2, h3, h4 {
-    color: var(--primary-dark);
+    color: var(--primary);
     font-weight: 700;
     letter-spacing: -0.015em;
 }
 
 body {
-    background-color: #f8f9fa;
+    background-color: var(--background);
+    color: var(--text);
 }
 
 .stSidebar {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium)) !important;
+    background: var(--dark-box-bg) !important;  /* Usa il blu navy per la sidebar */
 }
 
 .stSidebar .sidebar-content {
-    color: white !important;
+    color: var(--dark-text) !important;
 }
 
 .stSidebar label {
-    color: white !important;
+    color: var(--dark-text) !important;
     font-weight: 500 !important;
 }
 
-.stSidebar .stSlider label {
-    color: white !important;
+/* Riquadri per Option Premiums e Heatmap Interpretation */
+.metric-container, .interpretation-box, .greek-explanation {
+    background-color: var(--box-bg) !important;
+    color: var(--text) !important;
 }
 
-.stSidebar .stNumberInput label {
-    color: white !important;
+/* Light theme specific - mantieni i riquadri bianchi */
+@media (prefers-color-scheme: light) {
+    .metric-container, .interpretation-box, .greek-explanation {
+        background-color: var(--light-box-bg) !important;
+    }
 }
 
-.stSidebar .stMarkdown h3 {
-    color: white !important;
-}
-
+/* Resto del tuo CSS originale mantenuto con le variabili */
 .stNumberInput, .stSlider {
     margin-bottom: 1.2rem;
 }
 
-/* Premium metric cards */
 .metric-container {
     display: flex;
     flex-direction: column;
@@ -89,7 +111,6 @@ body {
     align-items: center;
     padding: 1.8rem 2rem;
     border-radius: 12px;
-    background: white;
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     margin-bottom: 1.5rem;
     text-align: center;
@@ -115,7 +136,7 @@ body {
     font-weight: 800;
     font-family: 'Roboto Mono', monospace;
     margin: 0.7rem 0;
-    color: var(--primary-dark);
+    color: var(--text);
     letter-spacing: -0.03em;
 }
 
@@ -124,72 +145,23 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--primary-medium);
+    color: var(--primary);
     margin-bottom: 0.5rem;
 }
 
-.greek-values {
-    font-size: 0.85rem;
-    font-family: 'Roboto Mono', monospace;
-    margin-top: 0.5rem;
-    letter-spacing: -0.01em;
-}
-
-/* Enhanced tables */
-.stDataFrame {
-    border-radius: 10px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
-    border: 1px solid rgba(0,0,0,0.03) !important;
-}
-
-/* Heatmap styling */
-.heatmap-title {
-    font-weight: 700 !important;
-    font-size: 1.3rem !important;
-    margin-bottom: 1rem !important;
-}
-
-/* Footer */
-.footer {
-    font-size: 0.78rem;
-    text-align: center;
-    margin-top: 3rem;
-    color: #6c757d;
-    padding: 1.2rem;
-    border-top: 1px solid #e9ecef;
-    letter-spacing: 0.03em;
-}
-
-/* Input labels */
-.st-emotion-cache-1qg05tj {
-    font-weight: 500 !important;
-    color: var(--primary-medium) !important;
-}
-
-/* Custom divider */
-.section-divider {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
-    margin: 2rem 0;
-}
-
-/* Interpretation boxes */
 .interpretation-box {
-    background-color: #f8f9fa;
     border-radius: 8px;
     padding: 1.5rem;
     margin: 1.5rem 0;
-    border-left: 4px solid var(--accent-teal);
+    border-left: 4px solid var(--primary);
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .greek-explanation {
-    background-color: white;
     border-radius: 8px;
     padding: 1rem;
     margin: 1rem 0;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--secondary-bg);
 }
 </style>
 """, unsafe_allow_html=True)
