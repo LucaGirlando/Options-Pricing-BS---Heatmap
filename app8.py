@@ -26,21 +26,21 @@ st.markdown("""
 st.markdown("""
 <style>
 :root {
-    /* Light Theme */
+    /* Light Theme (valori esatti da te forniti) */
     --light-primary: #4BFFFC;
     --light-background: #FFFFFF;
     --light-text: #000000;
     --light-secondary-bg: #9FA1B5;
-    --light-box-bg: #FFFFFF;
+    --light-box-bg: #FFFFFF;  /* Riquadri bianchi nel light theme */
     
-    /* Dark Theme */
+    /* Dark Theme (valori esatti da te forniti) */
     --dark-primary: #4BFFFC;
     --dark-background: #000000;
     --dark-text: #FFFFFF;
     --dark-secondary-bg: #262730;
-    --dark-box-bg: #1a2639;  /* Colore sidebar (blu navy) */
+    --dark-box-bg: #1a2639;  /* Riquadri blu navy (come la sidebar) */
     
-    /* Default to light theme */
+    /* Variabili predefinite (light theme di default) */
     --primary: var(--light-primary);
     --background: var(--light-background);
     --text: var(--light-text);
@@ -48,124 +48,65 @@ st.markdown("""
     --box-bg: var(--light-box-bg);
 }
 
+/* Se il sistema OS è in dark mode, applica il dark theme */
 @media (prefers-color-scheme: dark) {
     :root {
         --primary: var(--dark-primary);
         --background: var(--dark-background);
         --text: var(--dark-text);
         --secondary-bg: var(--dark-secondary-bg);
-        --box-bg: var(--dark-box-bg);
+        --box-bg: var(--dark-box-bg);  /* Riquadri blu navy nel dark theme */
     }
 }
 
-* {
-    font-family: 'Lato', 'Segoe UI', Roboto, sans-serif;
-}
-
-h1, h2, h3, h4 {
-    color: var(--primary);
-    font-weight: 700;
-    letter-spacing: -0.015em;
-}
-
+/* Applicazione dei colori */
 body {
     background-color: var(--background);
     color: var(--text);
 }
 
+h1, h2, h3, h4 {
+    color: var(--primary);
+}
+
+/* Sidebar - blu navy fisso (come i riquadri nel dark theme) */
 .stSidebar {
-    background: var(--dark-box-bg) !important;  /* Usa il blu navy per la sidebar */
+    background: var(--dark-box-bg) !important;
 }
 
-.stSidebar .sidebar-content {
-    color: var(--dark-text) !important;
-}
-
-.stSidebar label {
-    color: var(--dark-text) !important;
-    font-weight: 500 !important;
-}
-
-/* Riquadri per Option Premiums e Heatmap Interpretation */
+/* Riquadri (Option Premiums + Heatmap Interpretation) */
 .metric-container, .interpretation-box, .greek-explanation {
     background-color: var(--box-bg) !important;
     color: var(--text) !important;
+    border: 1px solid var(--secondary-bg) !important;
 }
 
-/* Light theme specific - mantieni i riquadri bianchi */
-@media (prefers-color-scheme: light) {
-    .metric-container, .interpretation-box, .greek-explanation {
-        background-color: var(--light-box-bg) !important;
-    }
-}
-
-/* Resto del tuo CSS originale mantenuto con le variabili */
-.stNumberInput, .stSlider {
-    margin-bottom: 1.2rem;
-}
-
-.metric-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1.8rem 2rem;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    margin-bottom: 1.5rem;
-    text-align: center;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.metric-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-}
-
-.metric-call {
-    border-top: 4px solid var(--call-green);
-}
-
-.metric-put {
-    border-top: 4px solid var(--put-red);
-}
-
+/* Metric cards - stile personalizzato */
 .metric-value {
-    font-size: 2.1rem;
-    font-weight: 800;
-    font-family: 'Roboto Mono', monospace;
-    margin: 0.7rem 0;
-    color: var(--text);
-    letter-spacing: -0.03em;
+    color: var(--primary) !important;  /* Testo in #4BFFFC */
 }
 
 .metric-label {
-    font-size: 1.05rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
+    color: var(--text) !important;  /* Testo normale */
 }
 
-.interpretation-box {
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--primary);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+.force-light-theme {
+    --primary: var(--light-primary) !important;
+    --background: var(--light-background) !important;
+    --text: var(--light-text) !important;
+    --secondary-bg: var(--light-secondary-bg) !important;
+    --box-bg: var(--light-box-bg) !important;
 }
 
-.greek-explanation {
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
-    border: 1px solid var(--secondary-bg);
+.force-dark-theme {
+    --primary: var(--dark-primary) !important;
+    --background: var(--dark-background) !important;
+    --text: var(--dark-text) !important;
+    --secondary-bg: var(--dark-secondary-bg) !important;
+    --box-bg: var(--dark-box-bg) !important;
 }
 </style>
 """, unsafe_allow_html=True)
-
 class BlackScholes:
     def __init__(self, time_to_maturity, strike, current_price, volatility, interest_rate):
         self.time_to_maturity = time_to_maturity
