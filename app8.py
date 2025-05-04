@@ -26,142 +26,152 @@ st.markdown("""
 st.markdown("""
 <style>
 :root {
-    /* Light Theme */
-    --light-primary: #4BFFFC;
-    --light-background: #FFFFFF;
-    --light-text: #000000;
-    --light-secondary-bg: #9FA1B5;
-    --light-box-bg: #FFFFFF;
-    
-    /* Dark Theme */
-    --dark-primary: #4BFFFC;
-    --dark-background: #000000;
-    --dark-text: #FFFFFF;
-    --dark-secondary-bg: #262730;
-    --dark-box-bg: #1a2639;  /* Colore sidebar (blu navy) */
-    
-    /* Default to light theme */
-    --primary: var(--light-primary);
-    --background: var(--light-background);
-    --text: var(--light-text);
-    --secondary-bg: var(--light-secondary-bg);
-    --box-bg: var(--light-box-bg);
+    /* Color Scheme - Professional Quant Style */
+    --primary-accent: #4BFFFC;          /* Teal accent for key elements */
+    --background: #FFFFFF;              /* Light theme background */
+    --text-primary: #000000;            /* Main text color */
+    --text-secondary: #4D5263;          /* Secondary text (less emphasis) */
+    --card-background: #FFFFFF;         /* Card/box background */
+    --border-color: #E1E3EB;            /* Borders and dividers */
+    --sidebar-background: #1A2639;      /* Navy sidebar */
+    --sidebar-text: #FFFFFF;            /* Sidebar text */
+    --positive-value: #00A876;          /* Green for calls/positive values */
+    --negative-value: #0066CC;          /* Blue for puts/negative values (no red) */
+    --table-header: #F5F7FA;             /* Table header background */
+    --highlight: #F0F7FF;               /* Highlight color */
 }
 
+/* Dark Theme Overrides - Same structure, different colors */
 @media (prefers-color-scheme: dark) {
     :root {
-        --primary: var(--dark-primary);
-        --background: var(--dark-background);
-        --text: var(--dark-text);
-        --secondary-bg: var(--dark-secondary-bg);
-        --box-bg: var(--dark-box-bg);
+        --background: #000000;
+        --text-primary: #FFFFFF;
+        --text-secondary: #A3A9C2;
+        --card-background: #121826;
+        --border-color: #2A3042;
+        --table-header: #1E2233;
+        --highlight: #1A2A42;
     }
 }
 
+/* Core Typography - Professional Financial Style */
 * {
-    font-family: 'Lato', 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    line-height: 1.5;
 }
 
 h1, h2, h3, h4 {
-    color: var(--primary);
-    font-weight: 700;
-    letter-spacing: -0.015em;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+h1 {
+    font-size: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
 }
 
 body {
     background-color: var(--background);
-    color: var(--text);
+    color: var(--text-primary);
 }
 
+/* Sidebar - Consistent in Both Themes */
 .stSidebar {
-    background: var(--dark-box-bg) !important;  /* Usa il blu navy per la sidebar */
+    background: var(--sidebar-background) !important;
 }
 
 .stSidebar .sidebar-content {
-    color: var(--dark-text) !important;
+    color: var(--sidebar-text) !important;
 }
 
-.stSidebar label {
-    color: var(--dark-text) !important;
-    font-weight: 500 !important;
+.stSidebar label, .stSidebar .stMarkdown h3 {
+    color: var(--sidebar-text) !important;
 }
 
-/* Riquadri per Option Premiums e Heatmap Interpretation */
-.metric-container, .interpretation-box, .greek-explanation {
-    background-color: var(--box-bg) !important;
-    color: var(--text) !important;
-}
-
-/* Light theme specific - mantieni i riquadri bianchi */
-@media (prefers-color-scheme: light) {
-    .metric-container, .interpretation-box, .greek-explanation {
-        background-color: var(--light-box-bg) !important;
-    }
-}
-
-/* Resto del tuo CSS originale mantenuto con le variabili */
-.stNumberInput, .stSlider {
-    margin-bottom: 1.2rem;
-}
-
+/* Quantitative Metric Cards */
 .metric-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1.8rem 2rem;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    margin-bottom: 1.5rem;
-    text-align: center;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.metric-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    background: var(--card-background);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .metric-call {
-    border-top: 4px solid var(--call-green);
+    border-top: 3px solid var(--positive-value);
 }
 
 .metric-put {
-    border-top: 4px solid var(--put-red);
+    border-top: 3px solid var(--negative-value);
 }
 
 .metric-value {
-    font-size: 2.1rem;
-    font-weight: 800;
+    font-size: 2rem;
+    font-weight: 700;
     font-family: 'Roboto Mono', monospace;
-    margin: 0.7rem 0;
-    color: var(--text);
-    letter-spacing: -0.03em;
+    margin: 0.5rem 0;
+    color: var(--text-primary);
 }
 
 .metric-label {
-    font-size: 1.05rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
 }
 
+/* Tables - Clean Financial Data Presentation */
+.stDataFrame {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px !important;
+}
+
+.stDataFrame thead th {
+    background-color: var(--table-header) !important;
+    font-weight: 600 !important;
+}
+
+/* Interpretation Boxes - Analytical Notes */
 .interpretation-box {
-    border-radius: 8px;
-    padding: 1.5rem;
+    background: var(--card-background);
+    border-left: 4px solid var(--primary-accent);
+    padding: 1.25rem;
     margin: 1.5rem 0;
-    border-left: 4px solid var(--primary);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 0 6px 6px 0;
 }
 
-.greek-explanation {
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
-    border: 1px solid var(--secondary-bg);
+/* Input Controls - Professional Alignment */
+.stNumberInput, .stSlider, .stSelectbox {
+    margin-bottom: 1.25rem;
+}
+
+.stSlider .st-c7 {
+    background-color: var(--primary-accent) !important;
+}
+
+/* Greek Values Display */
+.greek-values {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.greek-values strong {
+    color: var(--text-primary);
+}
+
+/* Premium Divider */
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: var(--border-color);
+    margin: 2rem 0;
 }
 </style>
 """, unsafe_allow_html=True)
