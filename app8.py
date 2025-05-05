@@ -166,6 +166,23 @@ div[data-testid="stExpander"],
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+.interpretation-box, 
+.interpretation-box p, 
+.interpretation-box li, 
+.interpretation-box .greek-values {
+    color: #FFFFFF !important;  /* Testo bianco forzato */
+}
+
+/* Assicurati che il box abbia il giusto colore di sfondo */
+.interpretation-box {
+    background-color: #1A2639 !important;  /* Blu navy della sidebar */
+    border-left: 4px solid #4BFFFC !important;  /* Accento teal */
+}
+</style>
+""", unsafe_allow_html=True)
+
 class BlackScholes:
     def __init__(self, time_to_maturity, strike, current_price, volatility, interest_rate):
         self.time_to_maturity = time_to_maturity
