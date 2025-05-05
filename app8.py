@@ -25,29 +25,28 @@ st.markdown("""
 # Premium scientific CSS
 st.markdown("""
 <style>
-/* ===== CORE THEME SETUP ===== */
+/* ===== COLOR SCHEME FROM REFERENCE CODE ===== */
 :root {
     /* Light Theme */
-    --primary-accent: #4BFFFC;
+    --primary-accent: #3498db;          /* Blu dall'esempio */
     --background: #FFFFFF;
-    --text-primary: #000000;
+    --text-primary: #111111;             /* Testo scuro */
     --text-secondary: #5A5E6B;
     --card-background: #FFFFFF;
-    --border-color: #E4E7EB;
-    --sidebar-background: #1A2639;
+    --border-color: #E1E3EB;
+    --sidebar-background: #2c3e50;       /* Sidebar scura dall'esempio */
     --sidebar-text: #FFFFFF;
-    --positive-value: #00A876;
-    --negative-value: #0066CC;
-    --highlight: #F0F9FF;
+    --positive-value: #27ae60;           /* Verde metriche dall'esempio */
+    --negative-value: #3498db;           /* Blu per puts (no rosso) */
+    --highlight: #F0F7FF;
     
-    /* Dark Theme (overrides) */
-    --dark-primary-accent: #4BFFFC;
+    /* Dark Theme */
+    --dark-primary-accent: #3498db;
     --dark-background: #000000;
-    --dark-text-primary: #FFFFFF;
+    --dark-text-primary: #e0e0e0;       /* Testo chiaro dall'esempio */
     --dark-text-secondary: #A3A9C2;
     --dark-card-background: #121826;
     --dark-border-color: #2A3042;
-    --dark-highlight: #1A2A42;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,78 +57,51 @@ st.markdown("""
         --text-secondary: var(--dark-text-secondary);
         --card-background: var(--dark-card-background);
         --border-color: var(--dark-border-color);
-        --highlight: var(--dark-highlight);
     }
 }
 
 /* ===== TYPOGRAPHY ===== */
 * {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    line-height: 1.55;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
 }
 
 h1 {
-    font-size: 2.4rem;
+    font-size: 2.2em;
     font-weight: 700;
-    margin-bottom: 0.75rem;
-    background: linear-gradient(90deg, #4BFFFC, #2E86AB);
+    background: linear-gradient(90deg, #1abc9c, #3498db); /* Gradiente originale */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-align: left;
-    letter-spacing: -0.015em;
+    text-align: center;
+    margin-bottom: 0.5em;
 }
 
 h2 {
-    font-size: 1.8rem;
     color: var(--text-primary);
+    font-size: 1.6em;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.5rem;
-    margin-top: 2rem;
+    padding-bottom: 0.4em;
 }
 
-h3 {
-    font-size: 1.3rem;
-    color: var(--text-primary);
-    margin: 1.5rem 0 0.5rem;
-}
-
-/* ===== LAYOUT COMPONENTS ===== */
-body {
-    background-color: var(--background);
-    color: var(--text-primary);
-}
-
-/* Sidebar - Consistent in Both Themes */
+/* ===== SIDEBAR ===== */
 .stSidebar {
     background: var(--sidebar-background) !important;
 }
 
-.stSidebar .sidebar-content {
+.stSidebar .sidebar-content,
+.stSidebar label,
+.stSidebar .stMarkdown h3 {
     color: var(--sidebar-text) !important;
 }
 
-.stSidebar label, 
-.stSidebar .stMarkdown h3,
-.stSidebar .stSelectbox label,
-.stSidebar .stNumberInput label {
-    color: var(--sidebar-text) !important;
-}
-
-/* ===== QUANTITATIVE COMPONENTS ===== */
-/* Metric Cards */
+/* ===== METRIC CARDS ===== */
 .metric-container {
     background: var(--card-background);
+    border: 1px solid rgba(128, 128, 128, 0.2);
     border-radius: 10px;
     padding: 1.25rem;
-    margin-bottom: 1.25rem;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.metric-container:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 
 .metric-call {
@@ -141,88 +113,55 @@ body {
 }
 
 .metric-value {
-    font-size: 2.1rem;
-    font-weight: 700;
-    font-family: 'Roboto Mono', monospace;
-    margin: 0.5rem 0;
+    font-size: 1.8em;
+    font-weight: bold;
     color: var(--text-primary);
-    letter-spacing: -0.03em;
+    font-family: monospace;
 }
 
 .metric-label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 0.95em;
     color: var(--text-secondary);
-    margin-bottom: 0.25rem;
+    font-weight: 600;
 }
 
-/* Data Containers */
-.plot-container, 
-div[data-testid="stExpander"] {
-    background: var(--card-background);
+/* ===== EXPANDER/CONTAINERS ===== */
+div[data-testid="stExpander"],
+.plot-container {
+    background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 1.25rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    padding: 1em;
+    margin-bottom: 1em;
 }
 
-/* Tables */
+/* ===== TABLES ===== */
 .stDataFrame {
     border: 1px solid var(--border-color) !important;
     border-radius: 10px !important;
-    overflow: hidden !important;
 }
 
-/* Inputs */
-.stNumberInput, 
-.stSlider, 
-.stSelectbox {
-    margin-bottom: 1.5rem;
-}
-
-.stSlider .st-c7 {
-    background-color: var(--primary-accent) !important;
-}
-
-/* ===== SPECIAL COMPONENTS ===== */
-.section-divider {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        var(--border-color), 
-        transparent);
-    margin: 2.5rem 0;
-}
-
+/* ===== INTERPRETATION BOXES ===== */
 .interpretation-box {
     background: var(--card-background);
     border-left: 4px solid var(--primary-accent);
     padding: 1.25rem;
-    margin: 1.75rem 0;
+    margin: 1.5rem 0;
     border-radius: 0 8px 8px 0;
 }
 
+/* ===== UTILITY ===== */
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: var(--border-color);
+    margin: 2rem 0;
+}
+
 .greek-values {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.9rem;
+    font-family: monospace;
+    font-size: 0.9em;
     color: var(--text-secondary);
-    margin-top: 0.75rem;
-    line-height: 1.7;
-}
-
-/* ===== UTILITY CLASSES ===== */
-.value-up {
-    color: var(--positive-value);
-    font-weight: 600;
-}
-
-.value-down {
-    color: var(--negative-value);
-    font-weight: 600;
 }
 </style>
 """, unsafe_allow_html=True)
